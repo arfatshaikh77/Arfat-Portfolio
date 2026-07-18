@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arfat | Web Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,0,150,0.25), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0,255,255,0.25), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(0,255,100,0.2), transparent 30%);
+      animation: bgMove 20s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes bgMove {
+      0% { transform: translate(0,0) rotate(0deg); }
+      100% { transform: translate(-10%, -10%) rotate(360deg); }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00f7ff;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 10% 60px;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+
+    .hero-text h1 span {
+      color: #00f7ff;
+      text-shadow: 0 0 20px #00f7ff;
+    }
+
+    .hero-text h2 {
+      margin: 20px 0;
+      font-size: 2rem;
+      color: #ff00c8;
+    }
+
+    .hero-text p {
+      max-width: 600px;
+      line-height: 1.8;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #00f7ff, #ff00c8);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(0,247,255,0.5);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 35px rgba(255,0,200,0.7);
+    }
+
+    .socials {
+      margin-top: 25px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #00f7ff;
+      border-radius: 50%;
+      margin-right: 15px;
+      color: #00f7ff;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: #00f7ff;
+      color: black;
+      transform: rotate(360deg);
+      box-shadow: 0 0 20px #00f7ff;
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #00f7ff;
+      box-shadow: 0 0 40px #00f7ff;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Glass Card */
+    .glass {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 25px;
+      padding: 40px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 50px;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    /* Skills */
+    .skill {
+      margin-bottom: 25px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-bar span {
+      display: block;
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #00f7ff, #ff00c8);
+      animation: load 2s ease forwards;
+    }
+
+    @keyframes load {
+      from { width: 0; }
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: 0.4s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 0 35px rgba(0,247,255,0.4);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 15px;
+      color: #00f7ff;
+    }
+
+    .project-content p {
+      color: #ddd;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Contact */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .contact-info div {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .contact-info i {
+      font-size: 24px;
+      color: #00f7ff;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    form textarea {
+      resize: none;
+      height: 150px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"></Arfat></div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm <span>Arfat</span></h1>
+      <h2>Mern Stack Web Developer ⚡</h2>
+      <p>
+        I build ultra-modern, fast, and interactive websites with stunning UI/UX,
+        smooth animations, and scalable backend systems. Let's create something legendary.
+      </p>
+
+      <a href="#" class="btn">View My Work 🚀</a>
+
+      <div class="socials">
+        <!-- <a href="#"><i class="fab fa-github"></i></a> -->
+        <a href="https://www.linkedin.com/in/mdarfat/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/arfat_sheikh77/reels/?__pwa=1"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="./images/4186391c-b4e8-427c-9739-495ca578b05a 2.jpeg" alt="Developer" />
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="glass">
+      <p style="font-size: 1.1rem; line-height: 2;">
+        I'm a passionate web developer specializing in creating immersive digital experiences.
+        With expertise in modern frontend technologies , I transform ideas
+        into visually stunning and high-performance web applications.
+        <br><br>
+        💡 Focus Areas: React, JavaScript, Node.js, Express, MongoDB, Responsive Design,
+        API Integration, and UI/UX Animation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="glass">
+      <div class="skill">
+        <div class="skill-info">
+          <span>HTML / CSS</span><span>95%</span>
+        </div>
+        <div class="skill-bar"><span style="width:95%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-info">
+          <span>JavaScript</span><span>80%</span>
+        </div>
+        <div class="skill-bar"><span style="width:80%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-info">
+          <span>React.js</span><span>85%</span>
+        </div>
+        <div class="skill-bar"><span style="width:85%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-info">
+          <span>Node.js</span><span>75%</span>
+        </div>
+        <div class="skill-bar"><span style="width:75%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-info">
+          <span>MongoDB</span><span>70%</span>
+        </div>
+        <div class="skill-bar"><span style="width:70%"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects">
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="project-content">
+          <h3>AI Portfolio Generator</h3>
+          <p>Generates fully responsive portfolios using AI prompts and custom themes.</p>
+          <a href="#" class="btn">Live Demo</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="project-content">
+          <h3>Realtime Chat App</h3>
+          <p>Socket.io powered encrypted messaging platform with authentication.</p>
+          <a href="#" class="btn">Live Demo</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="project-content">
+          <h3>Analytics Dashboard</h3>
+          <p>Interactive dashboard with charts, filters, authentication, and API integration.</p>
+          <a href="#" class="btn">Live Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Let's Work Together</h2>
+
+    <div class="contact-container">
+
+      <div class="glass contact-info">
+        <div>
+          <i class="fas fa-envelope"></i>
+          <span>arfatahmad7782@gmail.com</span>
+        </div>
+
+        <div>
+          <i class="fas fa-phone"></i>
+          <span>+966 541878758,+91 7782048443</span>
+        </div>
+
+        <div>
+          <i class="fas fa-location-dot"></i>
+          <span>From Muzaffarpur(Bihar), currently Ras Tannurah,Dammam, Saudi Arabia</span>
+        </div>
+      </div>
+
+      <div class="glass">
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Tell me about your project..." required></textarea>
+          <button type="submit" class="btn">Send Message 🚀</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Arfat | Crafted with HTML, CSS & JavaScript ⚡
+  </footer>
+
+  <script>
+    // Typing Effect
+    const titles = [
+      "Mern-Stack Web Developer",
+      "React Developer",
+      "UI/UX Enthusiast",
+      "Desktop and Network Troubleshoot",
+      "IT Support Engineer"
+    ];
+
+    let i = 0;
+    let j = 0;
+    let current = "";
+    let isDeleting = false;
+
+    const element = document.querySelector(".hero-text h2");
+
+    function type() {
+      current = titles[i];
+
+      if (isDeleting) {
+        element.textContent = current.substring(0, j--);
+      } else {
+        element.textContent = current.substring(0, j++);
+      }
+
+      if (!isDeleting && j === current.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 1200);
+        return;
+      }
+
+      if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % titles.length;
+      }
+
+      setTimeout(type, isDeleting ? 50 : 120);
+    }
+
+    type();
+
+    // Fake Contact Submit
+    document.querySelector("form").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("🚀 Message sent successfully!");
+    });
+  </script>
+
+</body>
+</html>
